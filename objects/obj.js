@@ -111,7 +111,7 @@ for (let i in goods) {
 let author = prompt('Автор').trim();
 let arr = [];
 j=0;
-for ( let i in books) {
+for ( let i of books) {
     let a = books[i].author.toUpperCase();
     if(author.toUpperCase() === a){
         arr[j++]=books[i];
