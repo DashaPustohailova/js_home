@@ -26,12 +26,11 @@ function printBooks(books){
         buttonMinus.setAttribute('type', 'button');
         buttonMinus.setAttribute('value', '-');
         buttonMinus.addEventListener('click', dec);
-        let cnt = document.createElement('input')
+        let cnt = document.createElement('input');
         cnt.setAttribute('type', 'number');
         cnt.setAttribute('value', '0');
         cnt.setAttribute('readonly', 'true');
         let buttonPlus = document.createElement('input');
-        buttonPlus.addEventListener('click', function f() { console.log("+")});
         buttonPlus.setAttribute('type', 'button');
         buttonPlus.setAttribute('value', '+');
         buttonPlus.addEventListener('click', inc);
@@ -43,11 +42,13 @@ printBooks(books);
 
 
 function dec(){
-    this.nextElementSibling.setAttribute('value', `${(parseInt( this.nextElementSibling.getAttribute('value'))-1)}`);
+    if(!(parseInt( this.nextElementSibling.getAttribute('value')) === 0)){
+    this.nextElementSibling.setAttribute('value', `${(parseInt( this.nextElementSibling.getAttribute('value'))-1)}`);}
+    return 0;
 }
 
 function inc() {
-    this.previousElementSibling.setAttribute('value', `${(parseInt( this.previousElementSibling.getAttribute('value'))+1)}`);
+        this.previousElementSibling.setAttribute('value', `${(parseInt(this.previousElementSibling.getAttribute('value')) + 1)}`);
 }
 
 
