@@ -21,24 +21,34 @@ function printBooks(books){
     for(let elem of books) {
         let title = document.createElement('p');
         title.innerText = `${elem.title} | ${elem.author} `;
+        let div = document.createElement('div');
         let buttonMinus = document.createElement('input')
         buttonMinus.setAttribute('type', 'button');
         buttonMinus.setAttribute('value', '-');
+        buttonMinus.addEventListener('click', dec);
         let cnt = document.createElement('input')
         cnt.setAttribute('type', 'number');
         cnt.setAttribute('value', '0');
         cnt.setAttribute('readonly', 'true');
         let buttonPlus = document.createElement('input');
+        buttonPlus.addEventListener('click', function f() { console.log("+")});
         buttonPlus.setAttribute('type', 'button');
         buttonPlus.setAttribute('value', '+');
-        booksArea.append(title,buttonMinus,cnt,buttonPlus);
+        buttonPlus.addEventListener('click', inc);
+        div.append(buttonMinus,cnt,buttonPlus);
+        booksArea.append(title,div);
     }
 }
 printBooks(books);
 
 
+function dec(){
+    this.nextElementSibling.setAttribute('value', `${(parseInt( this.nextElementSibling.getAttribute('value'))-1)}`);
+}
 
-
+function inc() {
+    this.previousElementSibling.setAttribute('value', `${(parseInt( this.previousElementSibling.getAttribute('value'))+1)}`);
+}
 
 
 
