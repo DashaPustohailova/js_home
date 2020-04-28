@@ -22,24 +22,38 @@ console.log(`sumNum = ${m} (N = ${N})`);
 //спамом считаем слово spam в любом регистре
 let string = 'Hellо, spam World. One spAm 1 1 1 1 1';
 let spam = 'SPAM';
+let spam2 = "cat";
 let cnt = 0, i = 0;
 console.log(string);
-m = spamFunc(string);
+m = spamFunc(string,"spam","cat");
 console.log(`spamFunc = ${m}`);
 
 
-function spamFunc(string) {
-    let newStr = string.toUpperCase();
-    while(1) {
+function spamFunc(string, ...spam) {
+    let newStr = string.toLowerCase();
+    newStr = newStr.split(' ');            //строчку привели к массиву строк
+    for (let i = 0; i < newStr.length; i++) {
+        spam.forEach(function(element){
+            if (element === newStr[i]) { cnt++; } });
+    }
+
+    let p = (cnt / string.split(" ").length) <= 0.2 ? 1 :(cnt / string.split(" ").length) <= 0.4?
+        2 :(cnt / string.split(" ").length) <= 0.6 ?3:(cnt / string.split(" ").length) <= 0.8
+            ?4:5;
+    return p;
+/*    while(1) {
         let x = newStr.indexOf(spam, i);
-        if(x === -1) break;
-        cnt++;
+        let y = newStr.indexOf(spam2, i);
+        if(x === -1 && y === -1 ) break;
+        if(x !== -1 && y !== -1) cnt+=2;
+        else cnt++;
         i = x+1;
     }
     let p = (cnt / string.split(" ").length) <= 0.2 ? 1 :(cnt / string.split(" ").length) <= 0.4?
         2 :(cnt / string.split(" ").length) <= 0.6 ?3:(cnt / string.split(" ").length) <= 0.8
             ?4:5;
-    return p;
+    return p;*/
+
 }
 
 
@@ -55,7 +69,9 @@ function spamFunc(string) {
 * 2 - 4 - товара
 * 5 - 9 - товаров*/
 function aOrOv(num) {
-    if((Math.floor(num%10) === 0 || Math.floor(num%10) >=5 && Math.floor(num%10) <=9 )){
+    //лучше делать return,а  не консоль
+    if (num % 100 >= 10 && num% 100 <= 20){console.log(`${num} товаров`);}
+    else if((Math.floor(num%10) === 0 || Math.floor(num%10) >=5 && Math.floor(num%10) <=9 )){
         console.log(`${num} товаров`);
     }
     else if (Math.floor(num%10) === 1) console.log(`${num} товар`);
@@ -68,33 +84,18 @@ aOrOv(22);
 let users = [
     {
         login: "qwe",
-        age: 34,
-        city: "Москва",
-        favouriteLangs: ["php", "js"]
-    },
-    {
-        login: "asd",
         age: 23,
-        city: "Москва",
-        favouriteLangs: ["python", "javascript"]
+        city: "Москва"
     },
     {
         login: "rty56",
-        age: 58,
-        city: "Тверь",
-        favouriteLangs: ["java", "c"]
-    },
-    {
-        login: "rty56",
-        age: 58,
-        city: "Тверь",
-        favouriteLangs: ["java", "scala"]
+        age: 23,
+        city: "Тверь"
     },
     {
         login: "ght",
-        age: 45,
-        city: "Владивосток",
-        favouriteLangs: ["php", "ruby"]
+        age: 58,
+        city: "Москва"
     },
 ];
 
@@ -121,6 +122,7 @@ console.log(userAge(users,34, 50));
 * у которых в списке предпочитаемых языков есть favouriteLang
 
 */
+/*
 
 function lang(usersArr, favouriteLang) {
     let mass = [];
@@ -130,12 +132,14 @@ function lang(usersArr, favouriteLang) {
     return mass;
 }
 console.log(lang(users, "java"));
-
+*/
 
 
 /*
+
+/!*
 * 6. Напишите функцию, которая принимает на вход массив и сортирует его
-*  по названию городов пользователей (от А до Я).*/
+*  по названию городов пользователей (от А до Я).*!/
 function  sortCity(arr) {
     let city = [];
     let new_user = [];
@@ -156,3 +160,27 @@ function  sortCity(arr) {
 
 console.log(sortCity(users));
 
+*/
+
+
+//массив.sort() - сортирует массив по алфавиту
+let someArr=['Москва','Москва','Тверь','Владивосток','Анапа'];
+someArr.sort();
+console.log(someArr);
+
+
+someArr=[7,40,600,6];
+someArr.sort();
+console.log(someArr);
+
+function sortArr(first,second) {
+    //функция должна возвращать 0(первый=второму), -1,те отрицательное(первый<второго) и 1,те положительное
+    // first.city second.city (first - это объект)
+  let i;
+    if((i =  first.city.localeCompare(second.city)) !== 0 )return i;
+    if((i =  first.age-second.age) !== 0 )return i;
+    return first.age.localeCompare(second.login);
+}
+
+users.sort(sortArr);
+console.log(users);
