@@ -21,8 +21,17 @@ function printBooks(books){
     for(let elem of books) {
         let title = document.createElement('p');
         title.innerText = `${elem.title} | ${elem.author} `;
-        let buttonPlus = document.createElement('bu')
-        booksArea.append(title);
+        let buttonMinus = document.createElement('input')
+        buttonMinus.setAttribute('type', 'button');
+        buttonMinus.setAttribute('value', '-');
+        let cnt = document.createElement('input')
+        cnt.setAttribute('type', 'number');
+        cnt.setAttribute('value', '0');
+        cnt.setAttribute('readonly', 'true');
+        let buttonPlus = document.createElement('input');
+        buttonPlus.setAttribute('type', 'button');
+        buttonPlus.setAttribute('value', '+');
+        booksArea.append(title,buttonMinus,cnt,buttonPlus);
     }
 }
 printBooks(books);
