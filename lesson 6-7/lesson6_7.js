@@ -96,14 +96,9 @@ function generateTable(arrObj) {
     caption.innerText = 'Моя таблица';
     let cell;
     let row = table.insertRow(0);
-    /*    let cell1 = row.insertCell(0);
-        let cell2 = row.insertCell(1);
-        cell1.innerText = 'cell1';
-        cell2.innerText = 'cell2';*/
   for (let el in arrObj[0]) {
-        cell = row.insertCell(-1);
-        cell.innerText = el;
-        cell.addEventListener("click", sort);
+      cell = row.insertCell(-1);
+      cell.innerText = el;
     }
     for(let el of arrObj){
         row=table.insertRow(-1);
@@ -113,12 +108,49 @@ function generateTable(arrObj) {
             cell.innerText=el[el1];
         }
     }
+    table.addEventListener("click", sort);
     tableArea.append(table);
 }
 
-function sort() {
-
+function sort(event) {
+    let column = event.target.cellIndex;
+    console.log("столбец", column);
+    let flag = false;
+    let row = this.rows;
+    console.log("sort", row);
+    let minElemIndex =1; //номер строки с максимальным элементом(начинаем с 1, тк 0 - названия столбцов)
+    let cnt = 0; //счетчик
     console.log("sort", this);
+
+    for(let i=1; i <row.length; ++i){
+        console.log('i=', i);
+        let minElem = row[i].cells[column].innerText;  //записываем в maxElem значение очередного элемента
+        console.log('min=', minElem);
+
+        for (let j=i+1; j < row.length; ++j){
+            console.log('j=', j);
+            console.log('min =  ',minElem);
+            console.log('текущий ',row[j].cells[column].innerText);
+            if(isNaN(minElem)){
+                if ((minElem.localeCompare(row[j].cells[column].innerText)) >0){
+                    minElem = row[j].cells[column].innerText;
+                    minElemIndex = j;
+                    flag = true;
+                }
+            }
+            else if ((minElem - row[j].cells[column].innerText) >0){
+                minElem = row[j].cells[column].innerText;
+                minElemIndex = j;
+                flag = true;
+            }
+        }
+            if(flag){
+                row[cnt].after(row[minElemIndex]);
+                flag = false;
+            }
+
+        cnt++;
+    }
 }
 generateTable(goods);
 generateTable(articles);

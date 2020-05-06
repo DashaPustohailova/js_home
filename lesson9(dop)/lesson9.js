@@ -39,7 +39,24 @@ function printBooks(books){
     }
 }
 printBooks(books);
-
+/*
+* function generate (books){
+*   for(let item of books) {
+*       //создание элементов для title и author
+*   let btnContainer = documen/createElement('div');
+*   btnContainer.innerHTML = <input type='button' value='-'>
+                           <input type='number' value='0' min='0' max='${item.count}>
+                           <input type='button' value='+'>
+     btnContainer.addEventListener('click', changeCount.bind(btnContainer, item));
+     btnContainer.querySelector('input[type='number']').addEventListener('input', changeCount.bind(btnContainer, item));
+*   }
+*
+*
+* function changeCount(book, event) {
+*   let clickElem = event.target.value;
+*   let num = this.querySelector('input[type='number']')
+* }
+* }*/
 
 function dec(){
     if(!(parseInt( this.nextElementSibling.getAttribute('value')) === 0)){
