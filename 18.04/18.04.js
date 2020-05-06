@@ -20,9 +20,7 @@ console.log(`sumNum = ${m} (N = ${N})`);
 * 2. Написать функцию проверки на спам. Функция принимает на вход текст и спам - слова. Определить по 5ти бальной шкале,
 *  насколько часто в тексте встречается спам. Результат вернуть из функции*/
 //спамом считаем слово spam в любом регистре
-let string = 'Hellо, spam World. One spAm 1 1 1 1 1';
-let spam = 'SPAM';
-let spam2 = "cat";
+let string = 'Hellо, spam  cat World. spAm';
 let cnt = 0, i = 0;
 console.log(string);
 m = spamFunc(string,"spam","cat");
@@ -78,7 +76,7 @@ function aOrOv(num) {
     else console.log(`${num} товарa`);
 }
 
-aOrOv(22);
+aOrOv(12);
 
 
 let users = [

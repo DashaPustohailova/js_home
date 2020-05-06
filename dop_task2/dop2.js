@@ -4,15 +4,10 @@ let world1 = "aajjaa";
 let world2 = 'bbbccbbb';
 let j=0;
 let my_world=[];
-for(let i=0; i <((world1.length)/2); i++) {
-    my_world[j++]=world1[i];
-}
-for( let i=((world2.length) /2); i < world2.length; i++) {
-    my_world[j++]=world2[i];
-}
-
-console.log(my_world.join(''));
-
+let newWorld = world1.slice(0,(world1.length)/2);
+let newWorld2 = world2.slice((world2.length)/2);
+newWorld += newWorld2;
+console.log(newWorld);
 
 // Найдите самое длинное слово в предложении, при условии, что в предложении все слова разной длины.
 
